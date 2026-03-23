@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useTasks } from '@/hooks/useTasks';
@@ -8,6 +8,7 @@ import DashboardStats from '@/components/DashboardStats';
 import TaskList from '@/components/TaskList';
 import AddTaskDialog from '@/components/AddTaskDialog';
 import TaskAlarm from '@/components/TaskAlarm';
+import AchievementAnimation from '@/components/AchievementAnimation';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
