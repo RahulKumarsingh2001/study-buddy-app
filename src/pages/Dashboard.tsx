@@ -86,6 +86,8 @@ export default function Dashboard() {
             ) : (
               <TaskList tasks={tasks} onToggle={handleToggle} onDelete={handleDelete} />
             )}
+
+            <TaskAlarm tasks={tasks} />
           </div>
         </main>
       </div>
