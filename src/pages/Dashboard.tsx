@@ -18,6 +18,7 @@ export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showAchievement, setShowAchievement] = useState(false);
   const { tasks, isLoading, toggleTask, deleteTask } = useTasks(selectedSubject);
+  const handleAchievementComplete = useCallback(() => setShowAchievement(false), []);
 
   if (loading) {
     return (
@@ -28,8 +29,6 @@ export default function Dashboard() {
   }
 
   if (!user) return <Navigate to="/auth" replace />;
-
-  const handleAchievementComplete = useCallback(() => setShowAchievement(false), []);
 
   const handleToggle = async (id: string, status: 'pending' | 'completed') => {
     try {
