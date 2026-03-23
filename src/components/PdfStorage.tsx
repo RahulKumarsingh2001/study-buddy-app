@@ -143,7 +143,7 @@ export default function PdfStorage() {
                   </div>
                   <button onClick={() => openPdf(pdf.file_path)} className="p-1 rounded hover:bg-muted">
                     <ExternalLink className="h-4 w-4 text-muted-foreground" />
-                  </a>
+                  </button>
                   <button
                     onClick={() => deletePdf.mutate(pdf)}
                     className="opacity-0 group-hover:opacity-100 p-1 rounded hover:text-destructive transition-all"
