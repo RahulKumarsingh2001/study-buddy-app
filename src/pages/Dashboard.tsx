@@ -95,6 +95,7 @@ export default function Dashboard() {
             )}
 
             <TaskAlarm tasks={tasks} />
+            <AchievementAnimation show={showAchievement} onComplete={handleAchievementComplete} />
           </div>
         </main>
       </div>
