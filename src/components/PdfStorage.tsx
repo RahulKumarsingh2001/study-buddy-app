@@ -75,9 +75,13 @@ export default function PdfStorage() {
     },
   });
 
-  const getUrl = (path: string) => {
-    const { data } = supabase.storage.from('pdfs').getPublicUrl(path);
-    return data.publicUrl;
+  const openPdf = async (path: string) => {
+    const { data, error } = await supabase.storage.from('pdfs').createSignedUrl(path, 3600);
+    if (error || !data?.signedUrl) {
+      toast.error('Failed to open PDF');
+      return;
+    }
+    window.open(data.signedUrl, '_blank');
   };
 
   const filtered = subjectId === 'all' ? files : files.filter(f => f.subject_id === subjectId);
