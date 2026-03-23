@@ -16,6 +16,7 @@ export default function Dashboard() {
   const { user, loading } = useAuth();
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showAchievement, setShowAchievement] = useState(false);
   const { tasks, isLoading, toggleTask, deleteTask } = useTasks(selectedSubject);
 
   if (loading) {
