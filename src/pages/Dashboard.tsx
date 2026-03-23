@@ -7,6 +7,7 @@ import SubjectsSidebar from '@/components/SubjectsSidebar';
 import DashboardStats from '@/components/DashboardStats';
 import TaskList from '@/components/TaskList';
 import AddTaskDialog from '@/components/AddTaskDialog';
+import TaskAlarm from '@/components/TaskAlarm';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -85,6 +86,8 @@ export default function Dashboard() {
             ) : (
               <TaskList tasks={tasks} onToggle={handleToggle} onDelete={handleDelete} />
             )}
+
+            <TaskAlarm tasks={tasks} />
           </div>
         </main>
       </div>
