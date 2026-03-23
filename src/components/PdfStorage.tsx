@@ -141,7 +141,7 @@ export default function PdfStorage() {
                       </span>
                     )}
                   </div>
-                  <a href={getUrl(pdf.file_path)} target="_blank" rel="noopener noreferrer" className="p-1 rounded hover:bg-muted">
+                  <button onClick={() => openPdf(pdf.file_path)} className="p-1 rounded hover:bg-muted">
                     <ExternalLink className="h-4 w-4 text-muted-foreground" />
                   </a>
                   <button
