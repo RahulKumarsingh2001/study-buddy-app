@@ -1,6 +1,9 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { BookOpen, LogOut, Menu } from 'lucide-react';
+import Notepad from '@/components/Notepad';
+import Calculator from '@/components/Calculator';
+import PdfStorage from '@/components/PdfStorage';
 
 interface TopBarProps {
   onToggleSidebar: () => void;
@@ -23,8 +26,11 @@ export default function TopBar({ onToggleSidebar }: TopBarProps) {
         </div>
       </div>
 
-      <div className="flex items-center gap-3">
-        <span className="hidden text-sm text-muted-foreground sm:block">{user?.email}</span>
+      <div className="flex items-center gap-1">
+        <Notepad />
+        <Calculator />
+        <PdfStorage />
+        <span className="hidden text-sm text-muted-foreground sm:block ml-2">{user?.email}</span>
         <Button variant="ghost" size="sm" onClick={signOut}>
           <LogOut className="h-4 w-4" />
           <span className="hidden sm:inline">Logout</span>

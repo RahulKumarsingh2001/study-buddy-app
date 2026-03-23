@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useTasks } from '@/hooks/useTasks';
@@ -8,6 +8,7 @@ import DashboardStats from '@/components/DashboardStats';
 import TaskList from '@/components/TaskList';
 import AddTaskDialog from '@/components/AddTaskDialog';
 import TaskAlarm from '@/components/TaskAlarm';
+import AchievementAnimation from '@/components/AchievementAnimation';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -15,7 +16,9 @@ export default function Dashboard() {
   const { user, loading } = useAuth();
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showAchievement, setShowAchievement] = useState(false);
   const { tasks, isLoading, toggleTask, deleteTask } = useTasks(selectedSubject);
+  const handleAchievementComplete = useCallback(() => setShowAchievement(false), []);
 
   if (loading) {
     return (
@@ -30,6 +33,9 @@ export default function Dashboard() {
   const handleToggle = async (id: string, status: 'pending' | 'completed') => {
     try {
       await toggleTask.mutateAsync({ id, status });
+      if (status === 'pending') {
+        setShowAchievement(true);
+      }
     } catch {
       toast.error('Failed to update task');
     }
@@ -88,6 +94,7 @@ export default function Dashboard() {
             )}
 
             <TaskAlarm tasks={tasks} />
+            <AchievementAnimation show={showAchievement} onComplete={handleAchievementComplete} />
           </div>
         </main>
       </div>
