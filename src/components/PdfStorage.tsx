@@ -75,9 +75,13 @@ export default function PdfStorage() {
     },
   });
 
-  const getUrl = (path: string) => {
-    const { data } = supabase.storage.from('pdfs').getPublicUrl(path);
-    return data.publicUrl;
+  const openPdf = async (path: string) => {
+    const { data, error } = await supabase.storage.from('pdfs').createSignedUrl(path, 3600);
+    if (error || !data?.signedUrl) {
+      toast.error('Failed to open PDF');
+      return;
+    }
+    window.open(data.signedUrl, '_blank');
   };
 
   const filtered = subjectId === 'all' ? files : files.filter(f => f.subject_id === subjectId);
@@ -137,9 +141,9 @@ export default function PdfStorage() {
                       </span>
                     )}
                   </div>
-                  <a href={getUrl(pdf.file_path)} target="_blank" rel="noopener noreferrer" className="p-1 rounded hover:bg-muted">
+                  <button onClick={() => openPdf(pdf.file_path)} className="p-1 rounded hover:bg-muted">
                     <ExternalLink className="h-4 w-4 text-muted-foreground" />
-                  </a>
+                  </button>
                   <button
                     onClick={() => deletePdf.mutate(pdf)}
                     className="opacity-0 group-hover:opacity-100 p-1 rounded hover:text-destructive transition-all"
