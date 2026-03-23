@@ -29,9 +29,14 @@ export default function Dashboard() {
 
   if (!user) return <Navigate to="/auth" replace />;
 
+  const handleAchievementComplete = useCallback(() => setShowAchievement(false), []);
+
   const handleToggle = async (id: string, status: 'pending' | 'completed') => {
     try {
       await toggleTask.mutateAsync({ id, status });
+      if (status === 'pending') {
+        setShowAchievement(true);
+      }
     } catch {
       toast.error('Failed to update task');
     }
