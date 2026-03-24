@@ -1,6 +1,7 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import { BookOpen, LogOut, Menu } from 'lucide-react';
+import { BookOpen, LogOut, Menu, CalendarDays } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Notepad from '@/components/Notepad';
 import Calculator from '@/components/Calculator';
 import PdfStorage from '@/components/PdfStorage';
