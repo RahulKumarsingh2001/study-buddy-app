@@ -28,6 +28,11 @@ export default function TopBar({ onToggleSidebar }: TopBarProps) {
       </div>
 
       <div className="flex items-center gap-1">
+        <Link to="/calendar">
+          <Button variant="ghost" size="icon" className="h-9 w-9" title="Exam Calendar">
+            <CalendarDays className="h-4 w-4" />
+          </Button>
+        </Link>
         <Notepad />
         <Calculator />
         <PdfStorage />
