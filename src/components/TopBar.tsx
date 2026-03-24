@@ -1,6 +1,7 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import { BookOpen, LogOut, Menu } from 'lucide-react';
+import { BookOpen, LogOut, Menu, CalendarDays } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Notepad from '@/components/Notepad';
 import Calculator from '@/components/Calculator';
 import PdfStorage from '@/components/PdfStorage';
@@ -27,6 +28,11 @@ export default function TopBar({ onToggleSidebar }: TopBarProps) {
       </div>
 
       <div className="flex items-center gap-1">
+        <Link to="/calendar">
+          <Button variant="ghost" size="icon" className="h-9 w-9" title="Exam Calendar">
+            <CalendarDays className="h-4 w-4" />
+          </Button>
+        </Link>
         <Notepad />
         <Calculator />
         <PdfStorage />
