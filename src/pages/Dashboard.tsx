@@ -8,6 +8,7 @@ import DashboardStats from '@/components/DashboardStats';
 import TaskList from '@/components/TaskList';
 import AddTaskDialog from '@/components/AddTaskDialog';
 import TaskAlarm from '@/components/TaskAlarm';
+import ExamNotifications from '@/components/ExamNotifications';
 import AchievementAnimation from '@/components/AchievementAnimation';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
