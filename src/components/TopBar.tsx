@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Notepad from '@/components/Notepad';
 import Calculator from '@/components/Calculator';
 import PdfStorage from '@/components/PdfStorage';
+import ThemeToggle from '@/components/ThemeToggle';
 
 interface TopBarProps {
   onToggleSidebar: () => void;
