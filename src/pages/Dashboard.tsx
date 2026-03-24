@@ -75,6 +75,7 @@ export default function Dashboard() {
         {/* Main content */}
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
           <div className="mx-auto max-w-3xl space-y-6">
+            <ExamNotifications />
             <DashboardStats tasks={tasks} />
 
             <div className="flex items-center justify-between">
