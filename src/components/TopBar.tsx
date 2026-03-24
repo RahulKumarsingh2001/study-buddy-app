@@ -37,6 +37,7 @@ export default function TopBar({ onToggleSidebar }: TopBarProps) {
         <Notepad />
         <Calculator />
         <PdfStorage />
+        <ThemeToggle />
         <span className="hidden text-sm text-muted-foreground sm:block ml-2">{user?.email}</span>
         <Button variant="ghost" size="sm" onClick={signOut}>
           <LogOut className="h-4 w-4" />
