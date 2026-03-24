@@ -99,7 +99,7 @@ export default function CalendarPage() {
     const days = differenceInDays(d, new Date());
     if (days < 0) return <Badge variant="secondary">Passed</Badge>;
     if (days === 0) return <Badge variant="destructive">Today!</Badge>;
-    if (days === 1) return <Badge className="bg-orange-500 text-white">Tomorrow</Badge>;
+    if (days === 1) return <Badge className="bg-accent text-accent-foreground">Tomorrow</Badge>;
     return <Badge variant="outline">{days} days left</Badge>;
   };
 
