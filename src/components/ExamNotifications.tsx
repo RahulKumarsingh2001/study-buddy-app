@@ -1,5 +1,5 @@
 import { useExams } from '@/hooks/useExams';
-import { differenceInDays, parseISO } from 'date-fns';
+import { differenceInCalendarDays, parseISO } from 'date-fns';
 import { CalendarDays, X } from 'lucide-react';
 import { useState } from 'react';
 
@@ -9,8 +9,8 @@ export default function ExamNotifications() {
   const today = new Date();
 
   const upcoming = exams.filter((exam) => {
-    const days = differenceInDays(parseISO(exam.exam_date), today);
-    return days >= 0 && days <= 1 && !dismissed.has(exam.id);
+    const days = differenceInCalendarDays(parseISO(exam.exam_date), today);
+    return (days === 0 || days === 1) && !dismissed.has(exam.id);
   });
 
   if (upcoming.length === 0) return null;
@@ -18,7 +18,7 @@ export default function ExamNotifications() {
   return (
     <div className="space-y-2">
       {upcoming.map((exam) => {
-        const days = differenceInDays(parseISO(exam.exam_date), today);
+        const days = differenceInCalendarDays(parseISO(exam.exam_date), today);
         const isToday = days === 0;
         return (
           <div
