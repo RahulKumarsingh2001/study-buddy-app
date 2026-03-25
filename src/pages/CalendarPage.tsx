@@ -12,7 +12,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { CalendarPlus, Trash2, Bell, Loader2, ArrowLeft } from 'lucide-react';
-import { format, parseISO, differenceInDays, isToday, isTomorrow } from 'date-fns';
+import { format, parseISO, differenceInCalendarDays, isToday, isTomorrow } from 'date-fns';
 import { toast } from 'sonner';
 import { Link } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ export default function CalendarPage() {
     const now = new Date();
     exams.forEach((exam) => {
       const examDay = parseISO(exam.exam_date);
-      const daysUntil = differenceInDays(examDay, now);
+      const daysUntil = differenceInCalendarDays(examDay, now);
 
       if ((daysUntil === 0 || daysUntil === 1) && !notifiedExams.has(exam.id)) {
         const label = daysUntil === 0 ? 'TODAY' : 'TOMORROW';
@@ -96,7 +96,7 @@ export default function CalendarPage() {
 
   const getExamBadge = (exam_date: string) => {
     const d = parseISO(exam_date);
-    const days = differenceInDays(d, new Date());
+    const days = differenceInCalendarDays(d, new Date());
     if (days < 0) return <Badge variant="secondary">Passed</Badge>;
     if (days === 0) return <Badge variant="destructive">Today!</Badge>;
     if (days === 1) return <Badge className="bg-accent text-accent-foreground">Tomorrow</Badge>;
@@ -232,12 +232,12 @@ export default function CalendarPage() {
                 <CardContent>
                   {isLoading ? (
                     <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
-                  ) : exams.filter((e) => differenceInDays(parseISO(e.exam_date), new Date()) >= 0).length === 0 ? (
+                  ) : exams.filter((e) => differenceInCalendarDays(parseISO(e.exam_date), new Date()) >= 0).length === 0 ? (
                     <p className="text-sm text-muted-foreground">No upcoming exams.</p>
                   ) : (
                     <div className="space-y-2">
                       {exams
-                        .filter((e) => differenceInDays(parseISO(e.exam_date), new Date()) >= 0)
+                        .filter((e) => differenceInCalendarDays(parseISO(e.exam_date), new Date()) >= 0)
                         .map((exam) => (
                           <div
                             key={exam.id}
