@@ -2,6 +2,14 @@
 
 A modern study management application built for students to organize tasks, track exams, store notes, and manage study materials — all in one place.
 
+## 📸 Screenshots
+
+### Dashboard
+![Dashboard](public/screenshots/dashboard.png)
+
+### Exam Calendar
+![Exam Calendar](public/screenshots/calendar.png)
+
 ## ✨ Features
 
 - **📋 Task Management** — Add, track, and complete study tasks with subject tagging and date/time scheduling
